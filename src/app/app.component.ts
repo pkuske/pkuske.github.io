@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'postmessage-test';
+
+  testPostMessage() {
+    console.log("postMessage send");
+    window.parent.postMessage('SUCCESS', '*');
+  }
 }
