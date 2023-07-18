@@ -11,7 +11,7 @@ export class AppComponent {
 
   testPostMessage() {
     console.log('postMessage send');
-    window.parent.postMessage('SUCCESSs', '*');
+    window.parent.postMessage(JSON.stringify({ type: 'SUCCESS' }));
     this.showDiv = !this.showDiv;
   }
 }
