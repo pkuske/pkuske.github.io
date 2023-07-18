@@ -13,10 +13,15 @@ export class AppComponent {
   constructor(private postMessageService: PostMessageService) {}
 
   testPostMessage() {
-    const postMessageData = { type: 'SUCCESS' };
-    this.postMessageService.postMessage(postMessageData);
-    // console.log('postMessage send');
-    // window.parent.postMessage(JSON.stringify({ type: 'SUCCESS' }));
-    this.showDiv = !this.showDiv;
+    const messageData = {
+      type: 'MESSAGE_TYPE',
+      payload: 'Hello from Angular!',
+    };
+    window.parent.postMessage(JSON.stringify(messageData));
+    // const postMessageData = { type: 'SUCCESS' };
+    // this.postMessageService.postMessage(postMessageData);
+    // // console.log('postMessage send');
+    // // window.parent.postMessage(JSON.stringify({ type: 'SUCCESS' }));
+    // this.showDiv = !this.showDiv;
   }
 }
