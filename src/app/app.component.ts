@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PostMessageService } from './post-message.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,13 @@ export class AppComponent {
   title = 'postmessage-test';
   showDiv = false;
 
+  constructor(private postMessageService: PostMessageService) {}
+
   testPostMessage() {
-    console.log('postMessage send');
-    window.parent.postMessage(JSON.stringify({ type: 'SUCCESS' }));
+    const postMessageData = { type: 'SUCCESS' };
+    this.postMessageService.postMessage(postMessageData);
+    // console.log('postMessage send');
+    // window.parent.postMessage(JSON.stringify({ type: 'SUCCESS' }));
     this.showDiv = !this.showDiv;
   }
 }
