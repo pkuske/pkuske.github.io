@@ -8,7 +8,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   sendMessage() {
     // Send a message to the React app
-    if ('ReactNativeWebView' in window) {
+    if (
+      'ReactNativeWebView' in window &&
+      typeof window.ReactNativeWebView.postMessage === 'function'
+    ) {
       window.ReactNativeWebView.postMessage(
         JSON.stringify({ type: 'SUCCESS' })
       );
