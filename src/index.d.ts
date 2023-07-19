@@ -1,6 +1,6 @@
 declare global {
   interface Window {
-    ReactNativeWebview: {
+    ReactNativeWebView: {
       postMessage: (message: string) => void;
     };
   }
