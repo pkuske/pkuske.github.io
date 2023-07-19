@@ -8,6 +8,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   sendMessage() {
     // Send a message to the React app
-    window.parent.postMessage({ type: 'SUCCESS' });
+    window.ReactNativeWebview.postMessage(JSON.stringify({ type: 'SUCCESS' }));
   }
 }
