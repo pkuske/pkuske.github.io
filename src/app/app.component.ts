@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   sendMessage() {
-    // Send a message to the parent window (React app)
-    window.parent.postMessage('Hello from Angular!', '*');
+    // Send a message to the React app
+    window.parent.postMessage({ type: 'SUCCESS' });
   }
 }
