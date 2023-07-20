@@ -3,6 +3,14 @@ import { Injectable, InjectionToken } from '@angular/core';
 export const POST_MESSAGE_SERVICE_TOKEN =
   new InjectionToken<PostMessageService>('PostMessageService');
 
+declare global {
+  interface Window {
+    ReactNativeWebView: {
+      postMessage: (message: string) => void;
+    };
+  }
+}
+
 @Injectable({
   providedIn: 'root',
 })
