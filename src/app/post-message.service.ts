@@ -7,10 +7,12 @@ export const POST_MESSAGE_SERVICE_TOKEN =
   providedIn: 'root',
 })
 export class PostMessageService {
-  postMessage(postMessage: any) {
-    if ('parent' in window && typeof parent.postMessage === 'function') {
-      console.log('Message data being sent:', postMessage);
-      window.parent.postMessage(JSON.stringify(postMessage));
+  postMessage(data: any) {
+    if (
+      'ReactNativeWebView' in window &&
+      typeof window.ReactNativeWebView.postMessage === 'function'
+    ) {
+      window.ReactNativeWebView.postMessage(JSON.stringify(data));
     }
   }
 }

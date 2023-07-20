@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import {
+  PostMessageService,
+  POST_MESSAGE_SERVICE_TOKEN,
+} from './post-message.service';
 
 @Component({
   selector: 'app-root',
@@ -6,15 +10,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  constructor(
+    @Inject(POST_MESSAGE_SERVICE_TOKEN)
+    private postMessageService: PostMessageService
+  ) {}
+
   sendMessage() {
     // Send a message to the React app
-    if (
-      'ReactNativeWebView' in window &&
-      typeof window.ReactNativeWebView.postMessage === 'function'
-    ) {
-      window.ReactNativeWebView.postMessage(
-        JSON.stringify({ type: 'SUCCESS' })
-      );
-    }
+    const messageData = { type: 'SUCCESS' };
+    this.postMessageService.postMessage(messageData);
   }
 }
