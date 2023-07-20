@@ -8,6 +8,14 @@ import {
   POST_MESSAGE_SERVICE_TOKEN,
 } from './post-message.service';
 
+declare global {
+  interface Window {
+    ReactNativeWebView: {
+      postMessage: (message: string) => void;
+    };
+  }
+}
+
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule],

@@ -1,13 +1,5 @@
 import { Component } from '@angular/core';
 
-declare global {
-  interface Window {
-    ReactNativeWebView: {
-      postMessage: (message: string) => void;
-    };
-  }
-}
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
