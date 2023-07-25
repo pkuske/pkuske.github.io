@@ -1,8 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import {
-  PostMessageService,
-  POST_MESSAGE_SERVICE_TOKEN,
-} from './post-message.service';
+import { PostMessageService } from './post-message.service';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +7,7 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(
-    @Inject(POST_MESSAGE_SERVICE_TOKEN)
-    private postMessageService: PostMessageService
-  ) {}
+  constructor(private postMessageService: PostMessageService) {}
 
   sendMessage() {
     // Send a message to the React app

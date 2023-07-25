@@ -1,26 +1,18 @@
-import { Injectable, InjectionToken } from '@angular/core';
-
-export const POST_MESSAGE_SERVICE_TOKEN =
-  new InjectionToken<PostMessageService>('PostMessageService');
-
-declare global {
-  interface Window {
-    ReactNativeWebView: {
-      postMessage: (message: string) => void;
-    };
-  }
-}
+import { Injectable, Inject } from '@angular/core';
+import { PostMessageData } from './post-message-data.interface';
+import { WINDOW } from './constants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostMessageService {
-  postMessage(data: any) {
+  constructor(@Inject(WINDOW) private window: Window) {}
+  postMessage(data: PostMessageData = { type: 'SCCESS' }) {
     if (
-      'ReactNativeWebView' in window &&
-      typeof window.ReactNativeWebView.postMessage === 'function'
+      'ReactNativeWebView' in this.window &&
+      typeof this.window.ReactNativeWebView.postMessage === 'function'
     ) {
-      window.ReactNativeWebView.postMessage(JSON.stringify(data));
+      this.window.ReactNativeWebView.postMessage(JSON.stringify(data));
     }
   }
 }
